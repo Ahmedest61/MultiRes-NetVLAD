@@ -57,7 +57,7 @@ For more information on all commandline arguments run:
 
 ### Add/Train PCA-Whitening Layer
 
-This repository also contain Patch-NetVLAD code. After the successful training of MultiRes-NetVLAD, PCA-Whitening layer can be added using `add_pca.py`. The user needs to set parameters in `train.ini` in configs folder inside patchnetvlad. The user is required to set 'resumepath', 'density_L', 'dataset' and so on. By default, it is configured to train the PCA-Whitening layer of L=10 MR-NetVLAD on pittsburgh dataset. When executed with correct settings, this will add an additional checkpoint file to the same folder as resume_path.
+This repository also contain [Patch-NetVLAD](https://github.com/QVPR/Patch-NetVLAD/) code. After the successful training of MultiRes-NetVLAD, PCA-Whitening layer can be added using `add_pca.py`. The user needs to set parameters in `train.ini` in configs folder inside patchnetvlad. The user is required to set 'resumepath', 'density_L', 'dataset' and so on. By default, it is configured to train the PCA-Whitening layer of L=10 MR-NetVLAD on pittsburgh dataset. When executed with correct settings, this will add an additional checkpoint file to the same folder as resume_path.
 
 ```bash
 python add_pca.py
