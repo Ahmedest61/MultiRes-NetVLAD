@@ -670,7 +670,6 @@ if __name__ == "__main__":
             makedirs(savePath)
 
         with open(join(savePath, 'flags.json'), 'w') as f:
-#             f.write(json.dumps({k:v for k,v in vars(opt).items()}))
             f.write(json.dumps({k:v for k,v in opt.items()}))
 
         print('===> Saving state to:', logdir)

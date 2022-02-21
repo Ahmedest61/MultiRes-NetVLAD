@@ -16,14 +16,14 @@ import os
 import wandb
 
 workDir = os.path.abspath("./")
-user = 'A'
-if "hpcHome" in workDir:
-    prefix_data_in = "/home/gargs/hpcHome"
-    prefix_data = prefix_data_in+'/home/n10674454/MultiRes-NetVLAD'
+
+if "home_check" in workDir:
+    prefix_data_in = "path_to_home"
+    prefix_data = prefix_data_in+'path_to_MultiRes-NetVLAD'
 else:
-    prefix_data = "/home/n10674454/MultiRes-NetVLAD"
+    prefix_data = "path_to_MultiRes-NetVLAD"
     prefix_data_in = ""    
-root_dir = prefix_data_in+'/work/qvpr/data/raw/Pittsburgh250k/'
+root_dir = prefix_data_in+'path_to_Pittsburgh250k/'
 if not exists(root_dir):
     raise FileNotFoundError('root_dir is hardcoded, please adjust to point to Pittsburth dataset')
 
