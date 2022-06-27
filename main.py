@@ -578,21 +578,21 @@ if __name__ == "__main__":
         else:
             raise ValueError('Unknown pooling type: ' + opt.pooling)
 
-        if opt.appendPcaLayer == True and opt.mode.lower() == 'test': # should be True for testing only 
-            num_pcs = 4096
-            netvlad_output_dim = encoder_dim
-            if opt.pooling.lower() == 'netvlad':
-                netvlad_output_dim *= opt.num_clusters
-        
-            pca_conv = nn.Conv2d(netvlad_output_dim, num_pcs, kernel_size=(1, 1), stride=1, padding=0)
-            model.add_module('WPCA', nn.Sequential(*[pca_conv, Flatten(), L2Norm(dim=-1)]))
+        if opt.appendPcaLayer == True: # should be True for testing only 
+            if opt.mode.lower() == 'test':
+                num_pcs = 4096
+                netvlad_output_dim = encoder_dim
+                if opt.pooling.lower() == 'netvlad':
+                    netvlad_output_dim *= opt.num_clusters
             
-            if opt.ckpt.lower() == 'latest':
-                checkpoint_tar = 'checkpoint_WPCA_4096.pth.tar'
-            print("==>WPCA Added")
-        else:
-            raise ValueError('pca_layer can be used only during Testing')
-        
+                pca_conv = nn.Conv2d(netvlad_output_dim, num_pcs, kernel_size=(1, 1), stride=1, padding=0)
+                model.add_module('WPCA', nn.Sequential(*[pca_conv, Flatten(), L2Norm(dim=-1)]))
+                
+                if opt.ckpt.lower() == 'latest':
+                    checkpoint_tar = 'checkpoint_WPCA_4096.pth.tar'
+                print("==>WPCA Added")
+            elif opt.mode.lower() == 'train' or opt.mode.lower() == 'cluster':
+                raise ValueError('pca_layer can be used only during Testing')        
 
     print(model)
 
